@@ -95,15 +95,15 @@ function TabOverview() {
     <div>
       <div style={{marginBottom:24}}>
         <Eyebrow>Earth Brands Inc.</Eyebrow>
-        <h1 style={s.h1}>The OS for<br/>Sustainable Packaging</h1>
+        <h1 style={s.h1}>Custom Packaging, Made Easy</h1>
         <p style={{...s.p,fontSize:15,maxWidth:600,marginTop:10}}>We&apos;re building the platform that powers sustainable packaging for the $14B underserved SMB food-service market — combining self-serve ordering, AI-native ERP, and in-house production into one flywheel.</p>
       </div>
 
       <div style={{...s.grid4, marginBottom:18}}>
-        <div style={s.card}><KPI num="$5.5M" label="2025 Revenue" sub="+306% YoY"/></div>
-        <div style={s.card}><KPI num="163%" label="Net Revenue Retention" sub="H2 vs H1 2025"/></div>
+        <div style={s.card}><KPI num="$5.5M" label="2025 Revenue" sub="+62% YoY"/></div>
+        <div style={s.card}><KPI num="163%" label="Net Revenue Retention" sub="Earth Store accounts"/></div>
         <div style={s.card}><KPI num="99%" label="Self-Serve After Go-Live" sub="Earth Store automation"/></div>
-        <div style={s.cardAccent}><KPI num="$10M" label="2026 ARR Goal" sub="85% already secured" white/></div>
+        <div style={s.cardAccent}><KPI num="$10M" label="2026 Goal" sub="85% already secured" white/></div>
       </div>
 
       <div style={s.grid2}>
@@ -112,17 +112,17 @@ function TabOverview() {
           <CheckList items={[
             '$30B US food-service packaging market; SMBs = $14B, chronically underserved',
             'First platform to combine ordering, AI ERP, and in-house production',
-            'Proven unit economics: 36% gross margin expanding to 45%+ by 2026',
-            'Recurring revenue engine: 163% NRR with 99% self-serve after onboarding',
-            'Backed by Mark Cuban, Wyc Grousbeck, LionTree Advisors',
-            '$10M ARR target with 85% secured before Q1 even begins',
+            'Improving unit economics: 36% gross margin expanding to 45%+ by 2026',
+            'Recurring revenue engine: 163% NRR (Earth Store accounts) with 99% self-serve after onboarding',
+            'Backed by Mark Cuban, Wyc Grousbeck, LionTree',
+            '$10M target, with nearly 85% secured or expected to renew before the year begins',
           ]}/>
         </div>
         <div style={s.card}>
           <div style={{...s.h3,marginBottom:14}}>Market Sizing</div>
           <Bar2 label="Total US Food-Service Packaging" value={100} max={100} right="$30B"/>
           <Bar2 label="SMB Segment (45% of market)" value={47} max={100} color={C.mint} right="$14B"/>
-          <Bar2 label="Sustainable Packaging (fast-growing)" value={13} max={100} color={C.yellow} right="$4B+"/>
+          <Bar2 label="↳ Our Current Product Mix" value={33} max={100} color={C.yellow} right="$10B"/>
           <p style={{...s.p,fontSize:12.5,color:C.muted,marginTop:12}}>The SMB segment is structurally underserved — distributed by legacy players, no self-serve portals, poor unit economics. That&apos;s our wedge.</p>
         </div>
       </div>
@@ -134,7 +134,7 @@ function TabOverview() {
             <p style={{...s.p,fontSize:12.5,color:C.muted,marginTop:3}}>Conservative projections based on contracted, re-sign, and weighted pipeline revenue</p>
           </div>
           <div style={{display:'flex',gap:28}}>
-            {[['$5.5M','2025'],['$10.3M','2026'],['$17M','2027'],['$30M','2028']].map(([n,y])=>(
+            {[['$5.5M','2025'],['$10.3M','2026'],['$18M','2027'],['$31M','2028'],['$54M','2029']].map(([n,y])=>(
               <div key={y} style={{textAlign:'center'}}>
                 <div style={{fontFamily:"'Fustat',sans-serif",fontSize:22,fontWeight:800,color:C.forest}}>{n}</div>
                 <div style={{fontSize:11.5,color:C.muted}}>{y}</div>
@@ -152,15 +152,16 @@ function TabProblem() {
   return (
     <div>
       <SectionHead eyebrow="Why We Exist" title="A $14B Market With No Real Solution"
-        sub="The SMB food-service operator has been ignored by the industry for decades."/>
+        sub=""/>
+      <p style={{...s.p, fontSize:15, maxWidth:'100%', marginBottom:22}}>The supply chain has been rationally optimized away from the SMB market. We want to give SMB foodservice operators the value and service they need but can't get elsewhere.</p>
       <div style={s.grid2}>
         <div style={s.card}>
           <Eyebrow style={{color:'#e65100'}}>The Problem</Eyebrow>
           <div style={{...s.h3,marginBottom:12}}>How It Works Today</div>
           <CheckList items={[
-            'No self-serve ordering portal — every reorder requires a phone call or email chain',
+            'No self-serve ordering portal — slow, manual ordering often requires an email chain or phone call',
             'Custom branding is expensive, slow, and minimum-order-heavy',
-            'Legacy distributors mark up 30–50% and offer zero data or transparency',
+            'Legacy distributors mark up "street business" 30–50% and offer zero data or transparency',
             'Sustainable options cost 2–3x conventional, with no volume support',
             'Inventory management is manual — operators constantly run out or over-order',
             'No analytics on usage, no platform relationship, just a transaction',
@@ -189,9 +190,9 @@ function TabProblem() {
         <div style={{...s.h3,marginBottom:12}}>Why Now?</div>
         <div style={s.grid3}>
           {[
-            ['🌿','Sustainability Mandates','Municipal bans on single-use plastics accelerating. Operators need compliant alternatives now — not in 5 years.'],
+            ['🎨','The Branded Moment','SMB growth, TikTok virality, and the rise of the independent operator have created massive demand for custom branded packaging — and operators need it flexibly, not in 10,000-unit minimums.'],
             ['📱','Digital-Native Operators','New generation of food-service operators expects self-serve digital tools. They’ve never used a fax machine.'],
-            ['🏭','Supply Chain Maturity','Tariff dynamics and new Taiwan vendor relationships give us a 10%+ cost advantage heading into 2026.'],
+            ['🏭','Supply Chain Dynamics','Tariff uncertainty and incumbent consolidation give us a cost advantage and speed factor heading into 2026 that legacy distributors can’t match.'],
           ].map(([icon,title,body])=>(
             <div key={title} style={s.card}>
               <div style={{fontSize:22,marginBottom:8}}>{icon}</div>
@@ -211,7 +212,7 @@ function TabPlatform() {
   const tabs = [['store','🛒 Earth Store'],['central','🧠 Earth Central'],['base','🏭 Earth Base']];
   return (
     <div>
-      <SectionHead eyebrow="Product" title="Three Products. One Platform."
+      <SectionHead eyebrow="Product" title="Three Layers. One Output — Improved Customer Experience."
         sub="Each piece of the stack reinforces the others — creating a flywheel that compounds with every order."/>
       <div style={{display:'flex',gap:8,marginBottom:20}}>
         {tabs.map(([id,label])=>(
@@ -228,20 +229,24 @@ function TabPlatform() {
               <div style={{...s.h2,color:'#fff',fontSize:22,marginBottom:10}}>Self-Serve Portal for SMB Operators</div>
               <p style={{color:'rgba(255,255,255,0.8)',margin:'0 0 18px',fontSize:14,lineHeight:1.6}}>Earth Store is the first self-serve ordering, contract, and inventory management platform built specifically for SMB food-service operators.</p>
               <div style={{display:'flex',gap:24}}>
-                {[['99%','Self-serve after go-live'],['34%','of 2025 revenue'],['45%','2026 target']].map(([n,l])=>(
+                {[['99%','Self-serve after go-live'],['27%','of 2025 revenue'],['45%','2026 target']].map(([n,l])=>(
                   <div key={l}><div style={{fontFamily:"'Fustat',sans-serif",fontSize:22,fontWeight:800,color:'#fff'}}>{n}</div><div style={{fontSize:11,color:'rgba(255,255,255,0.7)'}}>{l}</div></div>
                 ))}
               </div>
             </div>
             <div style={s.card}>
               <div style={{...s.h3,fontSize:15,marginBottom:10}}>Key Milestones</div>
-              <CheckList items={['Launched 2024; scaled to 121+ active contracts','Boston Beer Co. (727 locations) on platform','Life Time Fitness, Tatte Bakery, Cisco Brewers all contracted','Cross-sell rate: ~25% additional spend per ES contract']}/>
+              <CheckList items={['Launched 2024; scaled to 169 active contracts','Boston Beer Co. (727 locations) on platform','Life Time Fitness, Tatte Bakery, Cisco Brewers all contracted','Cross-sell rate: ~25% additional spend per ES contract']}/>
+              <div style={{display:'flex',gap:16,marginTop:14,paddingTop:14,borderTop:`1px solid ${C.border}`}}>
+                <div><div style={{fontFamily:"'Fustat',sans-serif",fontSize:20,fontWeight:800,color:C.forest}}>+306%</div><div style={{fontSize:11,color:C.muted}}>YoY growth 2024→2025</div></div>
+                <div><div style={{fontFamily:"'Fustat',sans-serif",fontSize:20,fontWeight:800,color:C.forest}}>+324%</div><div style={{fontSize:11,color:C.muted}}>Current run-rate pace</div></div>
+              </div>
             </div>
           </div>
           <div>
             <div style={{...s.h3,marginBottom:12}}>Platform Features</div>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
-              {[['📦','One-click reorder with saved specs'],['🎨','Custom branding portal with live proof'],['📊','Usage analytics & inventory forecast'],['💳','Contract management & auto-billing'],['🚚','Real-time order tracking & delivery'],['🔄','Predictive reorder before stock-out'],['🌱','Sustainability reporting for B2B certs'],['📱','Mobile-first for on-the-go operators']].map(([icon,text])=>(
+              {[['📦','Smart reorder: one-click with saved specs & predictive restocking'],['🎨','Custom branding portal with live proof'],['📊','Usage analytics & inventory forecasting'],['💳','Contract management & auto-billing'],['🚚','Order tracking from production to delivery'],['📱','Mobile-first for on-the-go operators']].map(([icon,text])=>(
                 <div key={text} style={{display:'flex',gap:10,alignItems:'flex-start',padding:10,background:C.cream,borderRadius:8}}>
                   <div style={{width:26,height:26,background:C.forest,borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,fontSize:13}}>{icon}</div>
                   <span style={{fontSize:13,color:'#444',lineHeight:1.5}}>{text}</span>
@@ -257,12 +262,12 @@ function TabPlatform() {
             <Eyebrow>Earth Central</Eyebrow>
             <div style={{...s.h2,fontSize:21,marginBottom:10}}>AI-Native ERP</div>
             <p style={{...s.p,marginBottom:14}}>Earth Central is the operational backbone — an AI-powered ERP that manages inventory, production, logistics, and customer accounts in one place.</p>
-            <CheckList items={['Automated PO generation based on customer run-rates','Real-time production scheduling at Earth Base','Logistics optimization: TMS integration, carrier rate negotiation','Contract lifecycle management for all 121+ accounts','CRM integration (HubSpot) for pipeline-to-delivery tracking','Financial reporting and gross margin analysis per SKU']}/>
+            <CheckList items={['Automated PO generation based on customer run-rates','Real-time production scheduling at Earth Base','Logistics optimization: TMS integration, carrier rate negotiation','Contract lifecycle management for all 250+ accounts','CRM integration (HubSpot) for pipeline-to-delivery tracking','Financial reporting and gross margin analysis per SKU']}/>
           </div>
           <div>
             <div style={{...s.cardCream,marginBottom:14}}>
               <div style={{...s.h3,marginBottom:10}}>Why It&apos;s a Moat</div>
-              <p style={{...s.p,fontSize:13.5,margin:0}}>Most competitors have either a storefront OR an ERP. We have both, tightly integrated. Every order placed through Earth Store flows directly into Earth Central, triggering production, inventory allocation, and fulfillment — zero human touch.</p>
+              <p style={{...s.p,fontSize:13.5,margin:0}}>Most competitors have either a storefront <em>or</em> an ERP. We have both, tightly integrated. Every order placed through Earth Store flows directly into Earth Central, triggering production, inventory allocation, and fulfillment — zero human touch.</p>
             </div>
             <div style={s.card}>
               <div style={{...s.h3,marginBottom:10}}>AI-Powered Capabilities</div>
@@ -276,20 +281,58 @@ function TabPlatform() {
           <div style={{...s.cardAccent,padding:26}}>
             <Eyebrow style={{color:C.mint}}>Earth Base — Hutchinson, KS</Eyebrow>
             <div style={{...s.h2,color:'#fff',fontSize:21,marginBottom:10}}>50,000 sq ft Production Facility</div>
-            <p style={{color:'rgba(255,255,255,0.8)',margin:'0 0 20px',fontSize:14,lineHeight:1.6}}>Our owned production facility is the key to custom branded packaging at SMB-accessible economics. By printing in-house, we eliminate the 3rd-party print markup and control quality end-to-end.</p>
+            <p style={{color:'rgba(255,255,255,0.8)',margin:'0 0 20px',fontSize:14,lineHeight:1.6}}>Our print-on-demand facility is the key to delivering custom-branded packaging at SMB-accessible economics. By printing in house, we eliminate 3rd party markup, control our production schedule, and own quality.</p>
             <div style={{display:'flex',gap:24}}>
-              {[['+542%','Production growth 2025'],['2','New printing machines'],['25%','Print cost reduction target']].map(([n,l])=>(
+              {[['+542%','Production growth 2025'],['2','Dry offset printing lines'],['25%','Print cost reduction target']].map(([n,l])=>(
                 <div key={l}><div style={{fontFamily:"'Fustat',sans-serif",fontSize:22,fontWeight:800,color:'#fff'}}>{n}</div><div style={{fontSize:11,color:'rgba(255,255,255,0.7)'}}>{l}</div></div>
               ))}
             </div>
           </div>
           <div>
             <div style={{...s.card,marginBottom:14}}>
-              <div style={{...s.h3,fontSize:15,marginBottom:12}}>2026 Cost Reduction Roadmap</div>
-              <Bar2 label="Landed cup cost reduction" value={10} max={30} color={C.mint} right="–10%"/>
-              <Bar2 label="KS print cost reduction" value={25} max={30} color={C.mint} right="–25%"/>
-              <Bar2 label="Net freight reduction" value={15} max={30} color={C.mint} right="–15%"/>
-              <Bar2 label="Warehousing / fulfillment" value={15} max={30} color={C.mint} right="–15%"/>
+              <div style={{...s.h3,fontSize:15,marginBottom:4}}>Monthly Production Output</div>
+              <div style={{fontSize:12,color:C.muted,marginBottom:12}}>Cases (1,000 cups/case)</div>
+              <ResponsiveContainer width="100%" height={200}>
+                <ComposedChart data={[
+                  {month:'Jan',cases:151,fill:'#1a5276'},
+                  {month:'Feb',cases:860,fill:'#1a5276'},
+                  {month:'Mar',cases:588,fill:'#1a5276'},
+                  {month:'Apr',cases:1073,fill:'#2980b9'},
+                  {month:'May',cases:2803,fill:'#2980b9'},
+                  {month:'Jun',cases:2403,fill:'#2980b9'},
+                  {month:'Jul',cases:2818,fill:'#3498db'},
+                  {month:'Aug',cases:3810,fill:'#3498db'},
+                  {month:'Sep',cases:3480,fill:'#3498db'},
+                  {month:'Oct',cases:3156,fill:C.mint},
+                  {month:'Nov',cases:3279,fill:C.mint},
+                  {month:'Dec',cases:3827,fill:C.mint},
+                  {month:"Jan '26",cases:4412,fill:'#a29bfe'},
+                ]} margin={{top:4,right:8,left:-20,bottom:0}} barSize={18}>
+                  <CartesianGrid strokeDasharray="3 3" stroke={C.sand}/>
+                  <XAxis dataKey="month" tick={{fontSize:10,fill:C.muted}} tickLine={false}/>
+                  <YAxis tick={{fontSize:10,fill:C.muted}} tickLine={false} axisLine={false}/>
+                  <Tooltip formatter={(v)=>[v.toLocaleString()+' cs','']} labelStyle={{fontSize:12}} contentStyle={{fontSize:12,borderRadius:8,border:`1px solid ${C.border}`}}/>
+                  <Bar dataKey="cases" radius={[3,3,0,0]}>
+                    {[
+                      {month:'Jan',fill:'#1a5276'},{month:'Feb',fill:'#1a5276'},{month:'Mar',fill:'#1a5276'},
+                      {month:'Apr',fill:'#2980b9'},{month:'May',fill:'#2980b9'},{month:'Jun',fill:'#2980b9'},
+                      {month:'Jul',fill:'#3498db'},{month:'Aug',fill:'#3498db'},{month:'Sep',fill:'#3498db'},
+                      {month:'Oct',fill:C.mint},{month:'Nov',fill:C.mint},{month:'Dec',fill:C.mint},
+                      {month:"Jan '26",fill:'#a29bfe'},
+                    ].map((entry,i)=>(
+                      <Cell key={i} fill={entry.fill}/>
+                    ))}
+                  </Bar>
+                </ComposedChart>
+              </ResponsiveContainer>
+              <div style={{display:'flex',gap:10,flexWrap:'wrap',marginTop:10}}>
+                {[['#1a5276','Q1: 1,599 cs'],['#2980b9','Q2: 6,279 cs'],['#3498db','Q3: 10,108 cs'],[C.mint,'Q4: 10,262 cs'],['#a29bfe',"Jan '26: 4,412 cs"]].map(([color,label])=>(
+                  <div key={label} style={{display:'flex',alignItems:'center',gap:5,fontSize:11,color:C.muted}}>
+                    <div style={{width:10,height:10,borderRadius:2,background:color,flexShrink:0}}/>
+                    {label}
+                  </div>
+                ))}
+              </div>
             </div>
             <div style={{...s.cardCream,padding:12}}>
               <p style={{...s.p,fontSize:13,margin:0}}>New Head of Operations + second printing machine enables 200% output increase at only 50% labor cost increase. Combined with TMS system and 3PL consolidation, total margin expansion of <strong>~9–10 points</strong> expected in 2026.</p>
@@ -303,10 +346,13 @@ function TabPlatform() {
 
 // ─── TAB: TRACTION ────────────────────────────────────────────────────────────
 const tractionData = [
-  {q:'Q1 2025',rev:850},{q:'Q2 2025',rev:1100},{q:'Q3 2025',rev:1650},{q:'Q4 2025',rev:1900}
+  {q:'Q1 2025',es:132157,dist:884438},
+  {q:'Q2 2025',es:347175,dist:1041523},
+  {q:'Q3 2025',es:498717,dist:1163673},
+  {q:'Q4 2025',es:490075,dist:910173},
 ];
 const channelData = [
-  {name:'Earth Store',value:34,color:C.forest},{name:'Distributor',value:54,color:C.mint},{name:'One-Time Orders',value:12,color:C.sand}
+  {name:'Earth Store',value:27,color:C.forest},{name:'Distributor',value:61,color:C.mint},{name:'One-Time Orders',value:12,color:C.sand}
 ];
 
 function TabTraction() {
@@ -315,30 +361,32 @@ function TabTraction() {
       <SectionHead eyebrow="2025 Performance" title="The Numbers Don't Lie"
         sub="2025 was our breakout year — real contracts, real retention, real momentum."/>
       <div style={{...s.grid4,marginBottom:18}}>
-        <div style={s.card}><KPI num="$5.5M" label="Total Revenue" sub="+306% YoY"/></div>
-        <div style={s.card}><KPI num="163%" label="Net Revenue Retention" sub="H2 vs H1"/></div>
+        <div style={s.card}><KPI num="$5.5M" label="Total Revenue 2025" sub="Earth Store +306% YoY"/></div>
+        <div style={s.card}><KPI num="163%" label="NRR — Earth Store Accounts" sub="H2 vs H1"/></div>
         <div style={s.card}><KPI num="+542%" label="Production Growth" sub="Earth Base capacity"/></div>
-        <div style={s.card}><KPI num="121+" label="Active Contracts" sub="ES + Distributor"/></div>
+        <div style={s.card}><KPI num="253" label="Active Contracts" sub="ES + Distributor"/></div>
       </div>
       <div style={s.grid2}>
         <div style={s.card}>
-          <div style={{...s.h3,marginBottom:4}}>Quarterly Revenue 2025</div>
-          <p style={{...s.p,fontSize:12,color:C.muted,marginBottom:12}}>163% NRR reflects doubling of spending from H1 to H2</p>
-          <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={tractionData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={C.sand}/>
-              <XAxis dataKey="q" tick={{fontSize:11}} tickLine={false}/>
-              <YAxis tick={{fontSize:11}} tickFormatter={v=>`$${v}K`} tickLine={false}/>
-              <Tooltip formatter={v=>[`$${v}K`,'Revenue']}/>
-              <Bar dataKey="rev" radius={[5,5,0,0]}>
-                {tractionData.map((_, i) => <Cell key={i} fill={i===3?C.forest:C.mint+'99'}/>)}
+          <div style={{...s.h3,marginBottom:4}}>Quarterly Revenue 2025 — Channel Mix</div>
+          <p style={{...s.p,fontSize:12,color:C.muted,marginBottom:12}}>163% NRR (Earth Store accounts) reflects doubling of spending from H1 to H2</p>
+          <ResponsiveContainer width="100%" height={240}>
+            <BarChart data={tractionData} barSize={42}>
+              <CartesianGrid strokeDasharray="3 3" stroke={C.sand} vertical={false}/>
+              <XAxis dataKey="q" tick={{fontSize:11}} tickLine={false} axisLine={false}/>
+              <YAxis tick={{fontSize:10}} tickFormatter={v=>`$${(v/1000).toFixed(0)}K`} tickLine={false} axisLine={false}/>
+              <Tooltip formatter={(v,n)=>[`$${v.toLocaleString()}`, n==='es'?'Earth Store':'Non-Earth Store Revenue']}/>
+              <Legend formatter={n=>n==='es'?'Earth Store Revenue':'Non-Earth Store Revenue'} wrapperStyle={{fontSize:11}}/>
+              <Bar dataKey="es" name="es" stackId="a" fill={C.forest} radius={[0,0,4,4]}>
+              </Bar>
+              <Bar dataKey="dist" name="dist" stackId="a" fill={C.mint} radius={[4,4,0,0]}>
               </Bar>
             </BarChart>
           </ResponsiveContainer>
         </div>
         <div style={s.card}>
           <div style={{...s.h3,marginBottom:4}}>2025 Revenue by Channel</div>
-          <p style={{...s.p,fontSize:12,color:C.muted,marginBottom:12}}>Earth Store growing from 5% → 34% of revenue in one year</p>
+          <p style={{...s.p,fontSize:12,color:C.muted,marginBottom:12}}>Earth Store growing from 5% → 27% of revenue in one year (+306% YoY)</p>
           <ResponsiveContainer width="100%" height={160}>
             <PieChart>
               <Pie data={channelData} cx="50%" cy="50%" outerRadius={70} dataKey="value" label={({name,value})=>`${name} ${value}%`} labelLine={false}>
@@ -348,15 +396,38 @@ function TabTraction() {
             </PieChart>
           </ResponsiveContainer>
           <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginTop:8}}>
-            <div style={{...s.cardCream,padding:12}}><div style={{fontWeight:600,fontSize:13,marginBottom:2}}>Earth Store</div><div style={{fontFamily:"'Fustat',sans-serif",fontSize:20,fontWeight:800,color:C.forest}}>$1.87M</div><div style={{fontSize:12,color:C.muted}}>34% of revenue</div></div>
-            <div style={{...s.cardCream,padding:12}}><div style={{fontWeight:600,fontSize:13,marginBottom:2}}>Distributor</div><div style={{fontFamily:"'Fustat',sans-serif",fontSize:20,fontWeight:800,color:C.forest}}>$2.99M</div><div style={{fontSize:12,color:C.muted}}>54% of revenue</div></div>
+            <div style={{...s.cardCream,padding:12}}><div style={{fontWeight:600,fontSize:13,marginBottom:2}}>Earth Store</div><div style={{fontFamily:"'Fustat',sans-serif",fontSize:20,fontWeight:800,color:C.forest}}>$1.48M</div><div style={{fontSize:12,color:C.muted}}>27% of $5.471M</div></div>
+            <div style={{...s.cardCream,padding:12}}><div style={{fontWeight:600,fontSize:13,marginBottom:2}}>Distributor</div><div style={{fontFamily:"'Fustat',sans-serif",fontSize:20,fontWeight:800,color:C.forest}}>$3.34M</div><div style={{fontSize:12,color:C.muted}}>61% of revenue</div></div>
           </div>
         </div>
       </div>
-      <div style={{marginTop:18}}>
-        <div style={{...s.h3,marginBottom:12}}>Marquee Customers (2025)</div>
-        <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
-          {['☕ Tatte Bakery ($864K)','🏋️ Life Time Fitness ($468K)','🏟️ Madison Square Garden ($264K)','🏟️ Barclays Center ($178K)','🍺 Cisco Brewers ($141K)','🍺 Boston Beer Co. (727 locs)','☕ Hampton Coffee ($87K)','💚 Goodness Bowls ($52K)','🏈 Chelsea Piers ($34K)','🎵 City Winery','🍓 Kijitora Brooklyn ($37K)'].map(c=><Chip key={c}>{c}</Chip>)}
+
+      {/* 2026 Momentum */}
+      <div style={{...s.grid2, marginTop:18}}>
+        <div style={s.card}>
+          <Eyebrow>2026 Momentum — YTD</Eyebrow>
+          <div style={{...s.h3,marginBottom:14}}>New Contracts Added to Earth Central</div>
+          <div style={{display:'flex',gap:0,marginBottom:16}}>
+            {[['Jan','41','new'],['Feb','44','new'],['Mar','16','so far']].map(([mo,ct,sub],i)=>(
+              <div key={mo} style={{flex:1,textAlign:'center',padding:'12px 8px',background:i===2?C.cream:'#fff',borderRadius:i===0?'8px 0 0 8px':i===2?'0 8px 8px 0':'0',border:`1px solid ${C.border}`,borderLeft:i>0?'none':''}}>
+                <div style={{fontFamily:"'Fustat',sans-serif",fontSize:22,fontWeight:800,color:C.forest}}>{ct}</div>
+                <div style={{fontSize:11,color:C.muted}}>{mo} — {sub}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{height:1,background:C.border,marginBottom:14}}/>
+          <div style={{...s.h3,marginBottom:14}}>New Booked Customers</div>
+          <div style={{display:'flex',gap:24}}>
+            <div><div style={{fontFamily:"'Fustat',sans-serif",fontSize:26,fontWeight:800,color:C.forest}}>$2.1M</div><div style={{fontSize:12,color:C.muted}}>New deals booked YTD</div></div>
+            <div><div style={{fontFamily:"'Fustat',sans-serif",fontSize:26,fontWeight:800,color:C.forest}}>159</div><div style={{fontSize:12,color:C.muted}}>New deals since Jan 1</div></div>
+          </div>
+        </div>
+        <div style={s.card}>
+          <Eyebrow>Key Accounts</Eyebrow>
+          <div style={{...s.h3,marginBottom:14}}>Marquee Customers</div>
+          <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+            {['☕ Tatte Bakery ($864K)','🏋️ Life Time Fitness ($468K)','🏟️ Madison Square Garden ($264K)','🏟️ Barclays Center ($178K)','🍺 Cisco Brewers ($141K)','🍺 Boston Beer Co. (727 locs)','☕ Hampton Coffee ($87K)','💚 Goodness Bowls ($52K)','🏈 Chelsea Piers ($34K)','🎵 City Winery','🍓 Kijitora Brooklyn ($37K)'].map(c=><Chip key={c}>{c}</Chip>)}
+          </div>
         </div>
       </div>
     </div>
@@ -365,8 +436,8 @@ function TabTraction() {
 
 // ─── TAB: FINANCIALS ──────────────────────────────────────────────────────────
 const financialsData = [
-  {year:'2025',rev:5.5,ebitda:-0.5},{year:'2026',rev:10.3,ebitda:-0.83},
-  {year:'2027',rev:17,ebitda:0.99},{year:'2028',rev:30,ebitda:3.74}
+  {year:'2025',rev:5.5,ebitda:-1.2},{year:'2026',rev:10.3,ebitda:-0.62},
+  {year:'2027',rev:18,ebitda:1.26},{year:'2028',rev:31,ebitda:3.41},{year:'2029',rev:54,ebitda:7.56}
 ];
 
 function TabFinancials() {
@@ -374,12 +445,13 @@ function TabFinancials() {
     <div>
       <SectionHead eyebrow="3-Year Model" title="Path to Profitability"
         sub="Conservative projections built on contracted revenue, signed re-signs, and weighted pipeline."/>
-      <div style={{...s.grid3,marginBottom:18}}>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:14,marginBottom:18}}>
         {[
-          {yr:'2026',rev:'$10.3M',gm:'36.1%',ebitda:'-$834K',net:'-$1.1M',accent:false},
-          {yr:'2027',rev:'$17M',gm:'45%',ebitda:'+$990K',net:'+$675K',accent:false},
-          {yr:'2028',rev:'$30M',gm:'45%',ebitda:'+$3.74M',net:'+$3.37M',accent:true},
-        ].map(({yr,rev,gm,ebitda,net,accent})=>(
+          {yr:'2026',rev:'$10.3M',gm:'42%',ebitda:'-$620K',net:'-$890K',accent:false},
+          {yr:'2027',rev:'$18M',gm:'45%',ebitda:'+$1.26M',net:'+$760K',accent:false,showGM:true},
+          {yr:'2028',rev:'$31M',gm:'45%',ebitda:'+$3.41M',net:'+$3.0M',accent:false},
+          {yr:'2029',rev:'$54M',gm:'45%',ebitda:'+$7.56M',net:'+$6.8M',accent:true},
+        ].map(({yr,rev,gm,ebitda,net,accent,showGM})=>(
           <div key={yr} style={accent?s.cardAccent:s.card}>
             <Eyebrow style={accent?{color:C.mint}:{color:C.muted}}>{yr}</Eyebrow>
             <div style={{fontFamily:"'Fustat',sans-serif",fontSize:32,fontWeight:800,color:accent?'#fff':C.forest,letterSpacing:-1,lineHeight:1}}>{rev}</div>
@@ -388,7 +460,11 @@ function TabFinancials() {
             {[['Gross Margin',gm],['EBITDA',ebitda],['Net Income',net]].map(([l,v])=>(
               <div key={l} style={{display:'flex',justifyContent:'space-between',marginBottom:5}}>
                 <span style={{fontSize:13,color:accent?'rgba(255,255,255,0.7)':C.muted}}>{l}</span>
-                <span style={{fontSize:13,fontWeight:700,color:accent?C.mint:v.startsWith('+')?C.forest:'#e65100'}}>{v}</span>
+                <span style={{fontSize:13,fontWeight:700,color:
+                  accent ? C.mint :
+                  (l==='Gross Margin' && showGM) ? C.forest :
+                  v.startsWith('+') ? C.forest : '#e65100'
+                }}>{v}</span>
               </div>
             ))}
           </div>
@@ -397,21 +473,32 @@ function TabFinancials() {
       <div style={s.grid2}>
         <div style={s.card}>
           <div style={{...s.h3,marginBottom:4}}>Revenue & EBITDA Trajectory</div>
-          <p style={{...s.p,fontSize:12,color:C.muted,marginBottom:12}}>Cross EBITDA breakeven in 2027</p>
-          <ResponsiveContainer width="100%" height={240}>
-            <ComposedChart data={financialsData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={C.sand}/>
-              <XAxis dataKey="year" tick={{fontSize:11}} tickLine={false}/>
-              <YAxis yAxisId="l" tick={{fontSize:11}} tickFormatter={v=>`$${v}M`} tickLine={false}/>
-              <YAxis yAxisId="r" orientation="right" tick={{fontSize:11}} tickFormatter={v=>`$${v}M`} tickLine={false}/>
-              <Tooltip formatter={(v,n)=>[`$${v}M`,n]}/>
-              <Legend wrapperStyle={{fontSize:12}}/>
-              <Bar yAxisId="l" dataKey="rev" name="Revenue" radius={[4,4,0,0]}>
-                {financialsData.map((_,i)=><Cell key={i} fill={i===3?C.forest:C.mint+'99'}/>)}
+          <p style={{...s.p,fontSize:12,color:C.muted,marginBottom:16}}>EBITDA shown as shaded inner bar — crosses breakeven in 2027</p>
+          <ResponsiveContainer width="100%" height={260}>
+            <ComposedChart data={financialsData} barGap={4} barCategoryGap="15%">
+              <CartesianGrid strokeDasharray="3 3" stroke={C.sand} vertical={false}/>
+              <XAxis dataKey="year" tick={{fontSize:12}} tickLine={false} axisLine={false}/>
+              <YAxis tick={{fontSize:10}} tickFormatter={v=>`$${v}M`} tickLine={false} axisLine={false}/>
+              <Tooltip formatter={(v,n)=>[`$${parseFloat(v).toFixed(1)}M`, n]}/>
+              <Bar dataKey="rev" name="Revenue" fill={C.mint} fillOpacity={0.5} radius={[4,4,0,0]}/>
+              <Bar dataKey="ebitda" name="EBITDA" radius={[4,4,0,0]}>
+                {financialsData.map((d,i)=>(
+                  <Cell key={i} fill={d.ebitda>=0 ? C.evergreen : '#dc2626'} fillOpacity={0.9}/>
+                ))}
               </Bar>
-              <Line yAxisId="r" type="monotone" dataKey="ebitda" name="EBITDA" stroke="#f59e0b" strokeWidth={2} dot={{fill:'#f59e0b',r:4}}/>
             </ComposedChart>
           </ResponsiveContainer>
+          <div style={{display:'flex',alignItems:'center',gap:20,marginTop:8}}>
+            <div style={{display:'flex',alignItems:'center',gap:6,fontSize:12,color:C.muted}}>
+              <div style={{width:14,height:10,borderRadius:3,background:C.mint,opacity:0.5}}/> Revenue
+            </div>
+            <div style={{display:'flex',alignItems:'center',gap:6,fontSize:12,color:C.muted}}>
+              <div style={{width:14,height:10,borderRadius:3,background:C.evergreen}}/> EBITDA (positive)
+            </div>
+            <div style={{display:'flex',alignItems:'center',gap:6,fontSize:12,color:C.muted}}>
+              <div style={{width:14,height:10,borderRadius:3,background:'#dc2626'}}/> EBITDA (negative)
+            </div>
+          </div>
         </div>
         <div style={s.card}>
           <div style={{...s.h3,marginBottom:14}}>2026 Operating Expenses</div>
@@ -420,11 +507,11 @@ function TabFinancials() {
               <tr>{['Category','Amount','% Rev'].map(h=><th key={h} style={{textAlign:'left',padding:'8px 12px',background:C.sand,fontSize:12,fontWeight:700,borderBottom:`2px solid ${C.border}`}}>{h}</th>)}</tr>
             </thead>
             <tbody>
-              {[['Cost of Revenue (COGS)','$6.59M','63.9%'],['Warehouse & Logistics','$1.31M','12.7%'],['Advertising & Marketing','$568K','5.5%'],['Salaries & Wages','$1.02M','9.9%'],['Other Overhead','$1.9M','18.4%']].map(([c,a,p])=>(
+              {[['Cost of Revenue (COGS)','$5.87M','57%'],['Warehouse & Logistics','$1.31M','12.7%'],['Advertising & Marketing','$568K','5.5%'],['Salaries & Wages','$1.02M','9.9%'],['Other Overhead','$1.9M','18.4%']].map(([c,a,p])=>(
                 <tr key={c}>{[c,a,p].map((v,i)=><td key={i} style={{padding:'8px 12px',borderBottom:`1px solid ${C.border}`,color:'#444'}}>{v}</td>)}</tr>
               ))}
-              <tr style={{background:C.cream}}>{[['Gross Margin','$3.72M','36.1%']].map(([c,a,p])=>[c,a,p].map((v,i)=><td key={i} style={{padding:'8px 12px',fontWeight:700,borderBottom:`1px solid ${C.border}`}}>{v}</td>))}</tr>
-              <tr style={{background:C.sand}}>{[['EBITDA','-$834K','-8.1%']].map(([c,a,p])=>[c,a,p].map((v,i)=><td key={i} style={{padding:'8px 12px',fontWeight:700,color:'#e65100'}}>{v}</td>))}</tr>
+              <tr style={{background:C.cream}}>{[['Gross Margin','$4.43M','43%']].map(([c,a,p])=>[c,a,p].map((v,i)=><td key={i} style={{padding:'8px 12px',fontWeight:700,borderBottom:`1px solid ${C.border}`}}>{v}</td>))}</tr>
+              <tr style={{background:C.sand}}>{[['EBITDA','-$620K','-6%']].map(([c,a,p])=>[c,a,p].map((v,i)=><td key={i} style={{padding:'8px 12px',fontWeight:700,color:'#e65100'}}>{v}</td>))}</tr>
             </tbody>
           </table>
         </div>
@@ -439,6 +526,25 @@ function TabPipeline() {
     <div>
       <SectionHead eyebrow="2026 Revenue" title="$10M Goal — 85% Already Secured"
         sub="Our 2026 revenue is built from three sources: contracted carryover, scheduled re-signs, and new pipeline."/>
+
+      {/* Actuals momentum strip */}
+      <div style={{...s.cardAccent, marginBottom:18, padding:20}}>
+        <Eyebrow style={{color:C.mint}}>2026 Actuals — Where We Stand Today</Eyebrow>
+        <div style={{display:'flex',gap:0,marginTop:12}}>
+          {[
+            ['$6M','TTM Revenue','Trailing twelve months'],
+            ['$8M','Current Run-Rate','Annualized from recent months'],
+            ['$10M','On Pace For','Full year 2026 target'],
+            ['$2.1M','New Deals Booked YTD','159 new deals since Jan 1'],
+          ].map(([num,label,sub],i)=>(
+            <div key={label} style={{flex:1,padding:'14px 16px',borderLeft:i>0?'1px solid rgba(255,255,255,0.15)':'none'}}>
+              <div style={{fontFamily:"'Fustat',sans-serif",fontSize:26,fontWeight:800,color:'#fff',letterSpacing:-0.5,lineHeight:1}}>{num}</div>
+              <div style={{fontSize:12,fontWeight:600,color:'rgba(255,255,255,0.9)',marginTop:4}}>{label}</div>
+              <div style={{fontSize:11,color:'rgba(255,255,255,0.55)',marginTop:2}}>{sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
       <div style={{...s.grid3,marginBottom:18}}>
         {[
           {label:'Secured Revenue',num:'$6.1M',sub:'Contracted carryover',body:'Revenue from existing contracts whose terms roll into 2026 — zero new sales required.',pill:'Guaranteed',pillColor:'#E8F5EE',pillText:C.evergreen},
@@ -462,7 +568,19 @@ function TabPipeline() {
           <Bar2 label="Re-Sign Revenue ($2.57M)" value={25} max={100} color={C.sage} right="25%"/>
           <Bar2 label="Pipeline Revenue ($3.14M)" value={30} max={100} color={C.mint} right="30%"/>
           <div style={{...s.cardCream,marginTop:14,padding:12}}>
-            <p style={{...s.p,fontSize:13,margin:0}}><strong>Key:</strong> Even if pipeline comes in at zero, secured + re-signs = $8.67M = 87% of $10M goal.</p>
+            <p style={{...s.p,fontSize:13,margin:0}}><strong>Key:</strong> To hit $10M revenue goal, only roughly $1.5M in new recognized revenue required.</p>
+          </div>
+          <div style={{...s.cardAccent,marginTop:10,padding:12}}>
+            <div style={{fontSize:11,fontWeight:700,letterSpacing:'1px',textTransform:'uppercase',color:C.mint,marginBottom:6}}>New Bookings Pace</div>
+            <div style={{display:'flex',gap:24,alignItems:'flex-end'}}>
+              <div>
+                <div style={{fontFamily:"'Fustat',sans-serif",fontSize:26,fontWeight:800,color:'#fff'}}>~$10.1M</div>
+                <div style={{fontSize:11,color:'rgba(255,255,255,0.65)'}}>Annualized pace (based on $2.1M in 2.5 months)</div>
+              </div>
+              <div style={{fontSize:12,color:'rgba(255,255,255,0.8)',lineHeight:1.55,paddingBottom:3}}>
+                Already ahead of <strong style={{color:'#fff'}}>$7.7M</strong> weighted pipeline target<br/>and well past the <strong style={{color:'#fff'}}>$3.14M</strong> needed from new pipeline revenue
+              </div>
+            </div>
           </div>
         </div>
         <div style={s.card}>
@@ -557,42 +675,80 @@ function TabMargins() {
   );
 }
 
-// ─── TAB: TEAM ────────────────────────────────────────────────────────────────
+// ─── TAB: TEAM ──────────────────────────────────────────────────────────────────────────────
 function TabTeam() {
-  const team = [
-    {init:'MV',name:'Misha Vitels',title:'CEO & Co-Founder',bio:'Drives strategy, capital, and enterprise partnerships. Built the Earth Store platform concept and closed the company’s first major distributor contracts including MSG, Barclays, and Tatte.'},
-    {init:'PF',name:'Peter Frelinghuysen',title:'COO & Co-Founder',bio:'Oversees operations, supply chain, Earth Base production facility in Kansas. Built fulfillment infrastructure from zero to $5.5M revenue in two years.'},
-    {init:'DK',name:'Dave',title:'Head of Operations — Kansas',bio:'Leading Earth Base efficiency push. Responsible for the 25% print cost reduction target, 2-machine optimization, and TMS implementation.'},
-    {init:'HS',name:'Hayden Schwartz',title:'Account Executive',bio:'Managing key Earth Store accounts including Tatte, Cisco Brewers, and enterprise distributor relationships.'},
-    {init:'JL',name:'Jake Lundberg',title:'Account Executive',bio:'Focused on west coast pipeline and distributor expansion. Managing $40M+ in active pipeline deals.'},
-    {init:'SW',name:'Sophia Warren',title:'Account Executive',bio:'Leading DC and mid-Atlantic market expansion. Sourcing food-service operators in the $5K–$50K contract range.'},
+  const executives = [
+    {init:'M',name:'Misha',title:'CEO',sub:'Co-founder',bio:'Responsible for Tech, Operations, Vision, and Strategy. Built the Earth Brands platform from the ground up.',bg:C.evergreen,photo:'misha'},
+    {init:'P',name:'Peter',title:'COO',sub:'Co-founder',bio:'Responsible for Sales, Marketing, Vision, and Strategy. Closed key accounts including MSG, Barclays, and Tatte.',bg:C.ocean,photo:'peter',photoStyle:{objectPosition:'center 40%',transform:'scale(1.2)',transformOrigin:'center 35%'}},
+    {init:'L',name:'Lucy',title:'Chief of Staff',sub:'Earth Brands since day 1',bio:'Responsible for HR and Customer Support; helps with Operations and Marketing.',bg:C.sage,photo:'lucy'},
+    {init:'JL',name:'Jon L',title:'CTO',sub:'3x B2B SaaS founder',bio:'Responsible for planning and implementing tech strategy, and pushing boundaries in AI and tech.',bg:'#0288d1',photo:'jonlo'},
+    {init:'A',name:'Arman',title:'Senior Engineer',sub:'10+ yrs experience',bio:'Ensures day-to-day tech operations function smoothly across accounting, finance, operations, and sales platforms.',bg:'#5c6bc0',photo:'arman'},
+    {init:'D',name:'Dave',title:'Head of Operations',sub:'Joined 11/2025',bio:'Leading Earth Base efficiency push — 25% print cost reduction target, 2-machine optimization, and TMS implementation.',bg:C.forest,photo:'dave'},
+    {init:'JD',name:'Jon D',title:'CFO',sub:'Fractional',bio:'In charge of budget, forecasting, and cash flow management. Deep background in food-service finance at RBI.',bg:'#7c4dff',photo:'jond'},
   ];
+  const advisors = [
+    {name:'Chuck Chapman',co:'CAVA · Dairy Queen'},
+    {name:'Andy Pforzheimer',co:'bartaco · US Foods'},
+    {name:'Greg Allen',co:'AdvancePierre Foods'},
+    {name:'Peter Appel',co:'Arch'},
+    {name:'Bob King',co:'Humanscale'},
+  ];
+
+  const Avatar = ({init,bg,size=52,photo,photoStyle={}})=>(
+    photo && HEADSHOTS[photo]
+      ? <div style={{width:size,height:size,borderRadius:'50%',overflow:'hidden',flexShrink:0,boxShadow:'0 2px 8px rgba(0,0,0,0.15)'}}>
+          <img src={HEADSHOTS[photo]} alt={init} style={{width:'100%',height:'100%',objectFit:'cover',...photoStyle}}/>
+        </div>
+      : <div style={{width:size,height:size,borderRadius:'50%',background:bg,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontFamily:"'Fustat',sans-serif",fontSize:size*0.3,fontWeight:800,flexShrink:0,boxShadow:'0 2px 8px rgba(0,0,0,0.15)'}}>{init}</div>
+  );
+
   return (
     <div>
-      <SectionHead eyebrow="Leadership" title="Built for This Moment"
-        sub="A founder-led team with deep expertise in B2B SaaS, sustainability, food-service operations, and capital markets."/>
-      <div style={{...s.grid2,marginBottom:18}}>
-        {team.map(({init,name,title,bio})=>(
-          <div key={name} style={{...s.card,display:'flex',gap:14}}>
-            <div style={{width:44,height:44,borderRadius:10,background:C.forest,display:'flex',alignItems:'center',justifyContent:'center',color:'#fff',fontFamily:"'Fustat',sans-serif",fontSize:16,fontWeight:700,flexShrink:0}}>{init}</div>
-            <div>
-              <div style={{fontWeight:700,fontSize:14.5,marginBottom:2}}>{name}</div>
-              <div style={{fontSize:12.5,color:C.forest,fontWeight:600,marginBottom:6}}>{title}</div>
-              <div style={{fontSize:12.5,color:C.muted,lineHeight:1.55}}>{bio}</div>
+      <SectionHead eyebrow="Leadership" title="Built by Operators Who Have Lived the Problem and Understand the Solution"
+        sub="A founder-led team with deep expertise in B2B SaaS, food-service operations, finance, and capital markets."/>
+
+      <Eyebrow style={{marginBottom:12}}>Executive Team</Eyebrow>
+      <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:16,marginBottom:22}}>
+        {executives.map(({init,name,title,sub,bio,bg,photo,photoStyle})=>(
+          <div key={name} style={{...s.card,textAlign:'center',padding:18}}>
+            <div style={{display:'flex',justifyContent:'center',marginBottom:12}}>
+              <Avatar init={init} bg={bg} size={72} photo={photo} photoStyle={photoStyle}/>
             </div>
+            <div style={{fontFamily:"'Fustat',sans-serif",fontWeight:800,fontSize:16,color:C.ink}}>{name}</div>
+            <div style={{fontSize:12.5,color:C.forest,fontWeight:700,marginTop:1}}>{title}</div>
+            <div style={{fontSize:11,color:C.muted,fontStyle:'italic',marginBottom:8}}>{sub}</div>
+            <div style={{height:1,background:C.border,marginBottom:8}}/>
+            <div style={{fontSize:12,color:'#444',lineHeight:1.5,textAlign:'left'}}>{bio}</div>
           </div>
         ))}
       </div>
-      <div style={{...s.cardCream,padding:18}}>
-        <div style={{...s.h3,marginBottom:10}}>Advisors & Investors</div>
-        <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
-          {['🏀 Mark Cuban','🏆 Wyc Grousbeck (Boston Celtics)','🏦 LionTree Advisors','⚡ HepCo','🌊 East Dune','🎰 Fontainebleau'].map(i=><Chip key={i}>{i}</Chip>)}
+
+
+      <div style={s.cardCream}>
+        <Eyebrow style={{marginBottom:14}}>Advisors</Eyebrow>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(5,1fr)',gap:12,marginBottom:18}}>
+          {advisors.map(({name,co})=>(
+            <div key={name} style={{...s.card,textAlign:'center',padding:14}}>
+              <div style={{display:'flex',justifyContent:'center',marginBottom:8}}>
+                <div style={{width:38,height:38,borderRadius:'50%',background:C.sand,display:'flex',alignItems:'center',justifyContent:'center',fontSize:12,fontWeight:800,color:C.evergreen,fontFamily:"'Fustat',sans-serif"}}>
+                  {name.split(' ').map(w=>w[0]).join('')}
+                </div>
+              </div>
+              <div style={{fontWeight:700,fontSize:13,color:C.ink,marginBottom:3}}>{name}</div>
+              <div style={{fontSize:11,color:C.muted,lineHeight:1.4}}>{co}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{paddingTop:14,borderTop:`1px solid ${C.border}`}}>
+          <Eyebrow style={{marginBottom:8}}>Investors</Eyebrow>
+          <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
+            {['🏀 Mark Cuban','🏆 Wyc Grousbeck (Boston Celtics)','🏦 LionTree','⚡ HepCo','🌊 East Dune','🎰 Fontainebleau'].map(i=><Chip key={i}>{i}</Chip>)}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
 // ─── TAB: THE ROUND ───────────────────────────────────────────────────────────
 function TabRound() {
   return (
@@ -605,7 +761,7 @@ function TabRound() {
             <div style={{...s.h3,marginBottom:14}}>Round Terms</div>
             <table style={{width:'100%',borderCollapse:'collapse',fontSize:13.5}}>
               <tbody>
-                {[['Instrument','SAFE (Simple Agreement for Future Equity)'],['Raise Amount','$3,000,000'],['Valuation Cap','$23,000,000'],['Discount Rate','25%'],['Minimum Check','$100,000'],['Closed to Date','$1,000,000'],['Remaining','$2,000,000']].map(([l,v])=>(
+                {[['Instrument','SAFE (Simple Agreement for Future Equity)'],['Raise Amount','$3,000,000'],['Valuation Cap','$23,000,000'],['Discount Rate','25%'],['Minimum Check','$100,000'],['Closed to Date','$1,250,000'],['Remaining','$1,750,000']].map(([l,v])=>(
                   <tr key={l}><td style={{padding:'8px 12px',color:C.muted,borderBottom:`1px solid ${C.border}`}}>{l}</td><td style={{padding:'8px 12px',fontWeight:700,borderBottom:`1px solid ${C.border}`,color:l==='Remaining'?C.forest:C.ink}}>{v}</td></tr>
                 ))}
               </tbody>
@@ -614,12 +770,12 @@ function TabRound() {
           <div style={s.card}>
             <div style={{...s.h3,marginBottom:12}}>Round Progress</div>
             <div style={{display:'flex',justifyContent:'space-between',fontSize:15,marginBottom:8,fontWeight:600}}>
-              <span>$1M Closed</span><span style={{color:C.forest}}>33% Filled</span>
+              <span>$1.25M Closed</span><span style={{color:C.forest}}>42% Filled</span>
             </div>
             <div style={{height:16,background:C.sand,borderRadius:8,overflow:'hidden',marginBottom:12}}>
-              <div style={{height:'100%',width:'33%',background:`linear-gradient(90deg,${C.evergreen},${C.forest})`,borderRadius:8}}/>
+              <div style={{height:'100%',width:'42%',background:`linear-gradient(90deg,${C.evergreen},${C.forest})`,borderRadius:8}}/>
             </div>
-            <p style={{...s.p,fontSize:12.5,color:C.muted}}>$2M remaining. Strategic check sizes preferred. Closing Q1 2026.</p>
+            <p style={{...s.p,fontSize:12.5,color:C.muted}}>$1.75M remaining. Strategic check sizes preferred. Closing Q1 2026.</p>
             <div style={{...s.h3,marginTop:14,marginBottom:10,fontSize:15}}>Prior Investors</div>
             <div style={{display:'flex',flexWrap:'wrap',gap:6}}>
               {['Mark Cuban','Wyc Grousbeck','LionTree','HepCo','East Dune','Fontainebleau'].map(i=><Chip key={i}>{i}</Chip>)}
@@ -630,13 +786,13 @@ function TabRound() {
         <div>
           <div style={{...s.card,marginBottom:16}}>
             <div style={{...s.h3,marginBottom:14}}>Use of Funds</div>
-            {[['Working Capital (9–12 months)','$1.5M',50],['Marketing (events, ads, sponsorships)','$350K',12],['Sales (reps, in-person acquisition)','$300K',10],['Tech (AI features + personnel)','$300K',10],['Key Hires (Head of Growth + Ops)','$250K',8],['Operations (facility upgrades)','$150K',5],['Product Development','$150K',5],['Legal / Misc','$100K',3]].map(([l,a,p])=>(
+            {[['Working Capital (9–12 months)','$1.5M',50],['Key Hires (Head of Growth + Ops)','$400K',13],['Sales (reps, in-person acquisition)','$400K',13],['Tech (AI features + personnel)','$300K',10],['Marketing (events, ads, sponsorships)','$200K',7],['Operations (facility upgrades)','$150K',5],['Legal / Misc','$50K',2]].map(([l,a,p])=>(
               <Bar2 key={l} label={`${l} (${a})`} value={p} max={55} right={`${p}%`}/>
             ))}
           </div>
           <div style={{...s.cardCream,padding:18}}>
             <div style={{...s.h3,marginBottom:8,fontSize:15}}>Why Invest Now?</div>
-            <CheckList items={['$23M cap on a company with clear path to $10M+ ARR in 2026','85% of 2026 revenue already secured before raising','Proven retention: customers increase spend, don’t churn','Platform moat deepens with every order, every contract','Strategic co-investors include Cuban, Grousbeck, LionTree']}/>
+            <CheckList items={['$23M cap on a company on pace for $10M+ in 2026','85% of 2026 revenue already secured before raising','Proven retention: customers increase spend, don’t churn','Platform moat deepens with every order — as it embeds in default workflows, it naturally expands into new services over time','Strategic co-investors include Cuban, Grousbeck, LionTree']}/>
           </div>
         </div>
       </div>
