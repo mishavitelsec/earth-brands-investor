@@ -957,7 +957,7 @@ const PANELS = {
   dataroom:<TabDataRoom/>,returns:<TabReturns/>,
 };
 
-const PASSKEY = 'earthbrands2025';
+const PASSKEY = 'earthbrands2026';
 
 function PasswordGate({ onUnlock }) {
   const [input, setInput]   = React.useState('');
