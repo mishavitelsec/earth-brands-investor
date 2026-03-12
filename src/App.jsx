@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from "react";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell, ComposedChart } from "recharts";
 
 const C = {
@@ -8,7 +8,7 @@ const C = {
   border: '#d8d2c2', yellow: '#ffdd58', mint: '#4db87a',
 };
 
-const LOGO = null;
+const LOGO = "data:image/png;base64,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";
 
 const s = {
   app:    { display:'flex', flexDirection:'column', height:'100vh', fontFamily:"'Roboto',sans-serif", background:'#fff', color:C.ink },
@@ -706,23 +706,27 @@ function TabDataRoom() {
 
 // ─── TAB: RETURNS MODEL ───────────────────────────────────────────────────────
 const REV_SCENARIOS = [
-  {label:'Conservative',growthRate:50, multiple:2.25, color:'#f59e0b', desc:'50% growth · 2.25x rev multiple'},
-  {label:'Base',        growthRate:75, multiple:3,    color:C.ocean,   desc:'75% growth · 3x rev multiple'},
-  {label:'Upside',      growthRate:100,multiple:4.5,  color:'#22c55e', desc:'100% growth · 4.5x rev multiple'},
-];
-const EBITDA_SCENARIOS = [
-  {label:'Conservative',growthRate:50, ebitdaMargin:14,ebitdaMult:8,  color:'#f59e0b', desc:'50% growth · 14% margin · 8x EBITDA'},
-  {label:'Base',        growthRate:75, ebitdaMargin:18,ebitdaMult:12, color:C.ocean,   desc:'75% growth · 18% margin · 12x EBITDA'},
-  {label:'Upside',      growthRate:100,ebitdaMargin:22,ebitdaMult:16, color:'#22c55e', desc:'100% growth · 22% margin · 16x EBITDA'},
+  { label: "Base",         growthRate: 75,  multiple: 3,    color: "#4a9eff", desc: "75% growth · 3x rev exit" },
+  { label: "Upside",       growthRate: 100, multiple: 4.5,  color: "#34d399", desc: "100% growth · 4.5x rev exit" },
+  { label: "Conservative", growthRate: 50,  multiple: 2.25, color: "#f59e0b", desc: "50% growth · 2.25x rev exit" },
 ];
 
-function Slider({ label, min, max, step, value, onChange, color, format }) {
+const EBITDA_SCENARIOS = [
+  { label: "Base",         growthRate: 75,  ebitdaMargin: 18, ebitdaMult: 12, color: "#4a9eff", desc: "75% growth · 18% margin · 12x EBITDA" },
+  { label: "Upside",       growthRate: 100, ebitdaMargin: 22, ebitdaMult: 16, color: "#34d399", desc: "100% growth · 22% margin · 16x EBITDA" },
+  { label: "Conservative", growthRate: 50,  ebitdaMargin: 14, ebitdaMult: 8,  color: "#f59e0b", desc: "50% growth · 14% margin · 8x EBITDA" },
+];
+
+function ReturnSlider({ label, min, max, step, value, onChange, format, color, sub }) {
   const pct = ((value - min) / (max - min)) * 100;
   return (
     <div style={{marginBottom:22}}>
-      <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:10}}>
-        <span style={{fontSize:11,letterSpacing:'1px',textTransform:'uppercase',fontWeight:700,color:C.muted}}>{label}</span>
-        <span style={{fontFamily:"'Fustat',sans-serif",fontSize:20,fontWeight:800,color:color||C.forest}}>{format(value)}</span>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'baseline',marginBottom:8}}>
+        <div>
+          <span style={{fontSize:11,letterSpacing:'1.5px',textTransform:'uppercase',fontWeight:700,color:C.muted}}>{label}</span>
+          {sub && <span style={{fontSize:10,color:C.muted,marginLeft:6}}>{sub}</span>}
+        </div>
+        <span style={{fontFamily:"'Fustat',sans-serif",fontSize:22,fontWeight:800,color:color||C.forest,letterSpacing:-0.5}}>{format(value)}</span>
       </div>
       <div style={{position:'relative',height:4,background:C.sand,borderRadius:2}}>
         <div style={{position:'absolute',left:0,width:pct+'%',height:'100%',background:color||C.forest,borderRadius:2}}/>
@@ -730,58 +734,73 @@ function Slider({ label, min, max, step, value, onChange, color, format }) {
           onChange={e=>onChange(Number(e.target.value))}
           style={{position:'absolute',top:'50%',transform:'translateY(-50%)',width:'100%',margin:0,opacity:0,cursor:'pointer',height:22,zIndex:2}}
         />
-        <div style={{position:'absolute',left:pct+'%',top:'50%',transform:'translate(-50%,-50%)',width:13,height:13,borderRadius:'50%',background:color||C.forest,border:`2px solid #fff`,boxShadow:`0 0 8px ${color||C.forest}88`,pointerEvents:'none'}}/>
+        <div style={{position:'absolute',left:pct+'%',top:'50%',transform:'translate(-50%,-50%)',width:13,height:13,borderRadius:'50%',background:color||C.forest,border:'2px solid #fff',boxShadow:`0 0 8px ${color||C.forest}66`,pointerEvents:'none'}}/>
       </div>
     </div>
   );
 }
 
 function TabReturns() {
-  const [mode,       setModeRaw]    = useState('revenue');
-  const [baseRev,    setBaseRev]    = useState(10);
-  const [growth,     setGrowth]     = useState(75);
-  const [years,      setYears]      = useState(4);
-  const [multiple,   setMultiple]   = useState(3);
-  const [eMargin,    setEMargin]    = useState(18);
-  const [eMult,      setEMult]      = useState(12);
-  const [valCap,     setValCap]     = useState(23);
-  const [preset,     setPreset]     = useState(null);
+  const [mode, setModeRaw]              = useState('revenue');
+  const [baseRevenue, setBaseRevenue]   = useState(10);
+  const [growthRate, setGrowthRate]     = useState(75);
+  const [years, setYears]               = useState(4);
+  const [multiple, setMultiple]         = useState(3);
+  const [ebitdaMargin, setEbitdaMargin] = useState(18);
+  const [ebitdaMult, setEbitdaMult]     = useState(12);
+  const [valCap, setValCap]             = useState(23);
+  const [activeScenario, setActiveScenario] = useState(null);
 
-  const SCNS = mode === 'revenue' ? REV_SCENARIOS : EBITDA_SCENARIOS;
+  const setMode = useCallback((m) => { setModeRaw(m); setActiveScenario(null); }, []);
 
-  const setMode = useCallback((m) => { setModeRaw(m); setPreset(null); }, []);
+  const exitRevenue   = baseRevenue * Math.pow(1 + growthRate / 100, years);
+  const exitYear      = 2026 + years;
+  const ebitdaDollars = exitRevenue * (ebitdaMargin / 100);
+  const exitValue     = mode === 'revenue' ? exitRevenue * multiple * 1e6 : ebitdaDollars * ebitdaMult * 1e6;
+  const returnMultiple = exitValue / (valCap * 1e6);
+  const irr           = Math.pow(returnMultiple, 1 / years) - 1;
+  const irrColor      = irr > 0.8 ? C.forest : irr > 0.4 ? C.ocean : irr > 0.2 ? '#f59e0b' : '#ef4444';
+  const fmt = (n) => n >= 1e9 ? `$${(n/1e9).toFixed(1)}B` : n >= 1e6 ? `$${(n/1e6).toFixed(1)}M` : `$${(n/1e3).toFixed(0)}K`;
 
-  function applyPreset(i) {
-    const s = SCNS[i];
-    setGrowth(s.growthRate);
-    if (mode === 'revenue') setMultiple(s.multiple);
-    else { setEMargin(s.ebitdaMargin); setEMult(s.ebitdaMult); }
-    setPreset(i);
+  const SCENARIOS = mode === 'revenue' ? REV_SCENARIOS : EBITDA_SCENARIOS;
+
+  function applyScenario(i) {
+    const sc = SCENARIOS[i];
+    setGrowthRate(sc.growthRate);
+    if (mode === 'revenue') setMultiple(sc.multiple);
+    else { setEbitdaMargin(sc.ebitdaMargin); setEbitdaMult(sc.ebitdaMult); }
+    setActiveScenario(i);
   }
 
-  const exitRev   = baseRev * Math.pow(1 + growth / 100, years);
-  const ebitdaD   = exitRev * (eMargin / 100);
-  const exitValue = mode === 'revenue' ? exitRev * multiple * 1e6 : ebitdaD * eMult * 1e6;
-  const retMult   = exitValue / (valCap * 1e6);
-  const irr       = Math.pow(retMult, 1 / years) - 1;
-  const irrColor  = irr > 0.8 ? '#22c55e' : irr > 0.4 ? C.ocean : irr > 0.2 ? '#f59e0b' : '#ef4444';
-  const exitYear  = 2026 + years;
-  const fmtM = n => n>=1e9?`$${(n/1e9).toFixed(1)}B`:n>=1e6?`$${(n/1e6).toFixed(1)}M`:`$${(n/1e3).toFixed(0)}K`;
+  const scenarios = useMemo(() => SCENARIOS.map((sc) => {
+    const r  = baseRevenue * Math.pow(1 + sc.growthRate / 100, years);
+    const ex = mode === 'revenue' ? r * sc.multiple * 1e6 : r * (sc.ebitdaMargin / 100) * sc.ebitdaMult * 1e6;
+    const ret = ex / (valCap * 1e6);
+    return { ...sc, exit: ex, ret, irr: Math.pow(ret, 1 / years) - 1 };
+  }), [baseRevenue, years, valCap, mode]);
 
-  const maxR = baseRev * Math.pow(1 + growth / 100, 7);
+  const exitSubline = mode === 'revenue'
+    ? `${exitYear} exit · $${exitRevenue.toFixed(0)}M revenue · ${multiple.toFixed(2)}x multiple`
+    : `${exitYear} exit · $${exitRevenue.toFixed(0)}M rev · $${ebitdaDollars.toFixed(1)}M EBITDA · ${ebitdaMult}x`;
 
   return (
     <div>
       <SectionHead eyebrow="Investor Returns Calculator" title="Play With the Numbers"
-        sub="Adjust assumptions and see your potential return in real time."/>
-      <div style={{display:'flex',gap:8,marginBottom:22,alignItems:'center',flexWrap:'wrap'}}>
+        sub="Adjust assumptions and see your potential return in real time." />
+
+      {/* Mode toggle */}
+      <div style={{display:'flex',gap:8,marginBottom:24,alignItems:'center',flexWrap:'wrap'}}>
         {[['revenue','Revenue Multiple'],['ebitda','EBITDA Multiple']].map(([m,label])=>(
-          <button key={m} onClick={()=>setMode(m)} style={{padding:'7px 18px',borderRadius:8,border:`1px solid ${mode===m?C.forest:C.border}`,background:mode===m?C.forest:'transparent',color:mode===m?'#fff':C.muted,fontSize:13,fontWeight:600,cursor:'pointer',fontFamily:"'Roboto',sans-serif"}}>
-            {label}
-          </button>
+          <button key={m} onClick={()=>setMode(m)} style={{
+            padding:'7px 18px',borderRadius:8,
+            border:`1px solid ${mode===m ? C.forest : C.border}`,
+            background:mode===m ? C.forest : 'transparent',
+            color:mode===m ? '#fff' : C.muted,
+            fontSize:13,fontWeight:600,cursor:'pointer',fontFamily:"'Roboto',sans-serif",transition:'all .15s'
+          }}>{label}</button>
         ))}
-        <span style={{fontSize:13,color:C.muted,marginLeft:4}}>
-          {mode==='revenue'?'Common for high-growth platforms.':'Typical for mature distribution businesses.'}
+        <span style={{fontSize:13,color:C.muted}}>
+          {mode==='revenue' ? 'Common for high-growth platforms.' : 'Typical for mature distribution businesses.'}
         </span>
       </div>
 
@@ -789,80 +808,103 @@ function TabReturns() {
         {/* LEFT: Sliders */}
         <div style={s.card}>
           <Eyebrow style={{marginBottom:18}}>Assumptions</Eyebrow>
-          <Slider label="2026 Base Revenue" min={5} max={20} step={0.5} value={baseRev} onChange={setBaseRev} color={C.ocean} format={v=>`$${v}M`}/>
-          <Slider label="YoY Growth Rate" min={20} max={150} step={5} value={growth} onChange={v=>{setGrowth(v);setPreset(null);}} color="#a855f7" format={v=>`${v}%`}/>
 
-          {/* Trajectory chart */}
-          <div style={{background:C.cream,border:`1px solid ${C.border}`,borderRadius:8,padding:'10px 12px',marginBottom:20,marginTop:-6}}>
-            <div style={{fontSize:10,letterSpacing:'1px',textTransform:'uppercase',fontWeight:700,color:C.muted,marginBottom:8}}>Revenue Trajectory</div>
-            <div style={{display:'flex',gap:4,alignItems:'flex-end',height:60}}>
-              {[1,2,3,4,5,6,7].map(y=>{
-                const r = baseRev * Math.pow(1+growth/100, y);
-                const h = Math.round((r/maxR)*44)+8;
-                const act = y===years;
+          <ReturnSlider label="2026 Base Revenue" min={5} max={20} step={0.5}
+            value={baseRevenue} onChange={setBaseRevenue} format={v=>`$${v}M`} color={C.ocean}/>
+
+          <ReturnSlider label="YoY Growth Rate" min={20} max={150} step={5}
+            value={growthRate} onChange={v=>{setGrowthRate(v);setActiveScenario(null);}}
+            format={v=>`${v}%`} color="#8b5cf6"/>
+
+          {/* Trajectory mini-chart */}
+          <div style={{background:C.cream,border:`1px solid ${C.sand}`,borderRadius:8,padding:'10px 12px',marginBottom:20,marginTop:-6}}>
+            <div style={{...s.eyebrow,marginBottom:8,fontSize:9}}>Revenue Trajectory</div>
+            <div style={{display:'flex',gap:4}}>
+              {[1,2,3,4,5,6,7].map(y => {
+                const r = baseRevenue * Math.pow(1 + growthRate / 100, y);
+                const isActive = y === years;
                 return (
-                  <div key={y} onClick={()=>setYears(y)} style={{flex:1,textAlign:'center',cursor:'pointer'}}>
-                    <div style={{height:h,background:act?C.forest:C.sand,borderRadius:'3px 3px 2px 2px',marginBottom:2,transition:'all .2s'}}/>
-                    <div style={{fontSize:9,color:act?C.forest:C.muted}}>{2026+y}</div>
-                    <div style={{fontSize:9,fontWeight:700,color:act?C.forest:C.muted}}>${r.toFixed(0)}M</div>
+                  <div key={y} onClick={()=>setYears(y)} style={{flex:1,textAlign:'center',padding:'5px 2px',borderRadius:6,cursor:'pointer',
+                    background:isActive ? C.forest+'18' : 'transparent',
+                    border:`1px solid ${isActive ? C.forest+'44' : 'transparent'}`}}>
+                    <div style={{fontSize:9,color:isActive?C.forest:C.muted,marginBottom:3}}>{2026+y}</div>
+                    <div style={{fontSize:11,fontWeight:700,color:isActive?C.forest:C.muted}}>${r.toFixed(0)}M</div>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          <Slider label="Years to Exit" min={1} max={7} step={1} value={years} onChange={setYears} color="#8b5cf6" format={v=>`${v}yr (${2026+v})`}/>
-          {mode==='revenue' && <Slider label="Revenue Multiple at Exit" min={1} max={10} step={0.25} value={multiple} onChange={v=>{setMultiple(v);setPreset(null);}} color="#22c55e" format={v=>`${v.toFixed(2)}x`}/>}
-          {mode==='ebitda' && <>
-            <Slider label="EBITDA Margin at Exit" min={8} max={22} step={1} value={eMargin} onChange={v=>{setEMargin(v);setPreset(null);}} color="#22c55e" format={v=>`${v}%`}/>
-            <Slider label="EBITDA Exit Multiple" min={6} max={20} step={0.5} value={eMult} onChange={v=>{setEMult(v);setPreset(null);}} color="#ec4899" format={v=>`${v}x`}/>
-          </>}
-          <Slider label="SAFE Valuation Cap" min={10} max={40} step={0.5} value={valCap} onChange={setValCap} color="#f59e0b" format={v=>`$${v}M`}/>
+          <ReturnSlider label="Years to Exit" min={1} max={7} step={1}
+            value={years} onChange={setYears} format={v=>`${v}yr`} color="#8b5cf6" sub={`(${exitYear})`}/>
 
-          {/* Presets */}
+          {mode==='revenue' && (
+            <ReturnSlider label="Revenue Multiple at Exit" min={1} max={10} step={0.25}
+              value={multiple} onChange={v=>{setMultiple(v);setActiveScenario(null);}}
+              format={v=>`${v.toFixed(2)}x`} color={C.mint}/>
+          )}
+          {mode==='ebitda' && (<>
+            <ReturnSlider label="EBITDA Margin at Exit" min={8} max={22} step={1}
+              value={ebitdaMargin} onChange={v=>{setEbitdaMargin(v);setActiveScenario(null);}}
+              format={v=>`${v}%`} color={C.mint}/>
+            <ReturnSlider label="EBITDA Exit Multiple" min={6} max={20} step={0.5}
+              value={ebitdaMult} onChange={v=>{setEbitdaMult(v);setActiveScenario(null);}}
+              format={v=>`${v}x`} color="#ec4899"/>
+          </>)}
+
+          <ReturnSlider label="SAFE Valuation Cap" min={10} max={40} step={0.5}
+            value={valCap} onChange={setValCap} format={v=>`$${v}M`} color="#f59e0b"/>
+
+          {/* Scenario presets */}
           <div>
-            <div style={{fontSize:10,letterSpacing:'1.5px',textTransform:'uppercase',fontWeight:700,color:C.muted,marginBottom:10}}>Scenario Presets</div>
+            <div style={{...s.eyebrow,marginBottom:10}}>Scenario Presets</div>
             <div style={{display:'flex',gap:8}}>
-              {SCNS.map((sc,i)=>(
-                <button key={sc.label} onClick={()=>applyPreset(i)} style={{flex:1,padding:'7px 0',borderRadius:8,border:`1px solid ${preset===i?sc.color:C.border}`,background:preset===i?sc.color+'22':'transparent',color:preset===i?sc.color:C.muted,fontSize:12,fontWeight:700,cursor:'pointer',fontFamily:"'Roboto',sans-serif",transition:'all .15s'}}>
-                  {sc.label}
-                </button>
+              {SCENARIOS.map((sc,i)=>(
+                <button key={sc.label} onClick={()=>applyScenario(i)} style={{
+                  flex:1,padding:'7px 0',borderRadius:8,
+                  border:`1px solid ${activeScenario===i ? sc.color : C.border}`,
+                  background:activeScenario===i ? sc.color+'22' : 'transparent',
+                  color:activeScenario===i ? sc.color : C.muted,
+                  fontSize:12,fontWeight:700,cursor:'pointer',fontFamily:"'Roboto',sans-serif",transition:'all .15s'
+                }}>{sc.label}</button>
               ))}
             </div>
-            {preset!==null && <div style={{fontSize:11.5,color:C.muted,marginTop:8,textAlign:'center'}}>{SCNS[preset].desc}</div>}
+            {activeScenario!==null && (
+              <div style={{fontSize:11.5,color:C.muted,marginTop:8,textAlign:'center'}}>{SCENARIOS[activeScenario].desc}</div>
+            )}
           </div>
         </div>
 
         {/* RIGHT: Results */}
         <div style={{display:'flex',flexDirection:'column',gap:14}}>
-          <div style={{...s.card,borderColor:irrColor+'88',position:'relative',overflow:'hidden',padding:28}}>
+
+          {/* Main result card */}
+          <div style={{...s.card,borderColor:irrColor+'99',borderWidth:1.5,position:'relative',overflow:'hidden',padding:28}}>
             <div style={{position:'absolute',top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,transparent,${irrColor},transparent)`}}/>
             <div style={{marginBottom:22}}>
-              <div style={{fontSize:10,letterSpacing:'1.5px',textTransform:'uppercase',fontWeight:700,color:C.muted,marginBottom:6}}>Exit Value</div>
-              <div style={{fontFamily:"'Fustat',sans-serif",fontSize:62,fontWeight:800,color:irrColor,letterSpacing:-2,lineHeight:1}}>{fmtM(exitValue)}</div>
-              <div style={{fontSize:12,color:C.muted,marginTop:8}}>
-                {mode==='revenue'?`${exitYear} exit · $${exitRev.toFixed(0)}M revenue · ${multiple.toFixed(2)}x multiple`:`${exitYear} exit · $${exitRev.toFixed(0)}M rev · $${ebitdaD.toFixed(1)}M EBITDA · ${eMult}x`}
-              </div>
+              <div style={{...s.eyebrow,marginBottom:6}}>Exit Value</div>
+              <div style={{fontFamily:"'Fustat',sans-serif",fontSize:64,fontWeight:800,color:irrColor,letterSpacing:-2,lineHeight:1}}>{fmt(exitValue)}</div>
+              <div style={{fontSize:12,color:C.muted,marginTop:8}}>{exitSubline}</div>
             </div>
             <div style={s.divider}/>
             <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:0}}>
               <div>
-                <div style={{fontSize:10,letterSpacing:'1.5px',textTransform:'uppercase',fontWeight:700,color:C.muted,marginBottom:5}}>Return Multiple</div>
-                <div style={{fontFamily:"'Fustat',sans-serif",fontSize:46,fontWeight:800,color:C.ink,letterSpacing:-1,lineHeight:1}}>{retMult.toFixed(1)}x</div>
+                <div style={{...s.eyebrow,marginBottom:5}}>Return Multiple</div>
+                <div style={{fontFamily:"'Fustat',sans-serif",fontSize:46,fontWeight:800,color:C.ink,letterSpacing:-1,lineHeight:1}}>{returnMultiple.toFixed(1)}x</div>
                 <div style={{fontSize:11,color:C.muted,marginTop:4}}>on ${valCap}M cap</div>
               </div>
               <div style={{borderLeft:`1px solid ${C.border}`,paddingLeft:20}}>
-                <div style={{fontSize:10,letterSpacing:'1.5px',textTransform:'uppercase',fontWeight:700,color:C.muted,marginBottom:5}}>IRR</div>
+                <div style={{...s.eyebrow,marginBottom:5}}>IRR</div>
                 <div style={{fontFamily:"'Fustat',sans-serif",fontSize:46,fontWeight:800,color:irrColor,letterSpacing:-1,lineHeight:1}}>{(irr*100).toFixed(0)}%</div>
                 <div style={{fontSize:11,color:C.muted,marginTop:4}}>{years}yr hold period</div>
               </div>
             </div>
             {mode==='ebitda' && (
-              <div style={{marginTop:18,padding:12,background:C.cream,borderRadius:8,border:`1px solid ${C.border}`,display:'grid',gridTemplateColumns:'1fr 1fr 1fr'}}>
-                {[['Revenue',`$${exitRev.toFixed(0)}M`],['EBITDA',`$${ebitdaD.toFixed(1)}M`],['Margin',`${eMargin}%`]].map(([l,v],i)=>(
+              <div style={{marginTop:18,padding:12,background:C.cream,borderRadius:8,border:`1px solid ${C.sand}`,display:'grid',gridTemplateColumns:'1fr 1fr 1fr'}}>
+                {[['Revenue',`$${exitRevenue.toFixed(0)}M`],['EBITDA',`$${ebitdaDollars.toFixed(1)}M`],['Margin',`${ebitdaMargin}%`]].map(([l,v],i)=>(
                   <div key={l} style={{borderLeft:i>0?`1px solid ${C.border}`:'none',paddingLeft:i>0?12:0}}>
-                    <div style={{fontSize:10,letterSpacing:'1px',textTransform:'uppercase',color:C.muted,marginBottom:3}}>{l}</div>
-                    <div style={{fontSize:16,fontWeight:800,color:C.forest,fontFamily:"'Fustat',sans-serif"}}>{v}</div>
+                    <div style={{...s.eyebrow,fontSize:9,marginBottom:3}}>{l}</div>
+                    <div style={{fontFamily:"'Fustat',sans-serif",fontSize:17,fontWeight:800,color:C.forest}}>{v}</div>
                   </div>
                 ))}
               </div>
@@ -871,26 +913,24 @@ function TabReturns() {
 
           {/* Scenario comparison */}
           <div style={s.card}>
-            <div style={{fontSize:10,letterSpacing:'1.5px',textTransform:'uppercase',fontWeight:700,color:C.muted,marginBottom:14}}>Scenario Comparison</div>
-            {SCNS.map((sc,i)=>{
-              const r2 = baseRev * Math.pow(1+sc.growthRate/100, years);
-              const ex = mode==='revenue' ? r2*sc.multiple*1e6 : r2*(sc.ebitdaMargin/100)*sc.ebitdaMult*1e6;
-              const ret = ex/(valCap*1e6);
-              const sirr = Math.pow(ret,1/years)-1;
-              return (
-                <div key={sc.label} onClick={()=>applyPreset(i)} style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:12,cursor:'pointer',opacity:preset!==null&&preset!==i?0.4:1,transition:'opacity .15s'}}>
-                  <div style={{display:'flex',alignItems:'center',gap:8,width:120}}>
-                    <div style={{width:7,height:7,borderRadius:'50%',background:sc.color,flexShrink:0}}/>
-                    <span style={{fontSize:13,fontWeight:600,color:C.ink}}>{sc.label}</span>
-                  </div>
-                  <span style={{fontSize:13,color:C.muted,flex:1}}>{fmtM(ex)}</span>
-                  <div style={{display:'flex',gap:6}}>
-                    <span style={{fontSize:12,fontWeight:700,color:sc.color,background:sc.color+'22',borderRadius:5,padding:'2px 8px'}}>{ret.toFixed(1)}x</span>
-                    <span style={{fontSize:12,fontWeight:700,color:sc.color,background:sc.color+'22',borderRadius:5,padding:'2px 8px'}}>{(sirr*100).toFixed(0)}% IRR</span>
-                  </div>
+            <div style={{...s.eyebrow,marginBottom:14}}>Scenario Comparison</div>
+            {scenarios.map((sc,i)=>(
+              <div key={sc.label} onClick={()=>applyScenario(i)} style={{
+                display:'flex',alignItems:'center',justifyContent:'space-between',
+                marginBottom:12,cursor:'pointer',
+                opacity:activeScenario!==null&&activeScenario!==i?0.35:1,transition:'opacity .15s'
+              }}>
+                <div style={{display:'flex',alignItems:'center',gap:8,width:120}}>
+                  <div style={{width:7,height:7,borderRadius:'50%',background:sc.color,flexShrink:0}}/>
+                  <span style={{fontSize:13,fontWeight:600,color:C.ink}}>{sc.label}</span>
                 </div>
-              );
-            })}
+                <span style={{fontSize:13,color:C.muted,flex:1}}>{fmt(sc.exit)}</span>
+                <div style={{display:'flex',gap:6}}>
+                  <span style={{fontSize:12,fontWeight:700,color:sc.color,background:sc.color+'18',borderRadius:5,padding:'2px 8px'}}>{sc.ret.toFixed(1)}x</span>
+                  <span style={{fontSize:12,fontWeight:700,color:sc.color,background:sc.color+'18',borderRadius:5,padding:'2px 8px'}}>{(sc.irr*100).toFixed(0)}% IRR</span>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div style={{textAlign:'center',fontSize:11,color:C.muted,padding:4}}>
@@ -921,13 +961,13 @@ export default function App() {
   const [tab, setTab] = useState('overview');
   return (
     <div style={s.app}>
-      <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+      <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
 
       {/* Header */}
       <div style={s.header}>
         <div style={{display:'flex',alignItems:'center',gap:10}}>
-          <div style={{width:44,height:44,background:'#fff',display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden'}}>
-            <img src={LOGO} style={{width:40,height:40,objectFit:'contain',mixBlendMode:'multiply'}} alt="ec"/>
+          <div style={{width:40,height:40,display:'flex',alignItems:'center',justifyContent:'center'}}>
+            {LOGO && <img src={LOGO} style={{width:40,height:40,objectFit:'contain',mixBlendMode:'multiply'}} alt="ec"/>}
           </div>
           <div>
             <div style={{fontFamily:"'Fustat',sans-serif",fontWeight:800,fontSize:17,color:C.forest,letterSpacing:-0.3}}>Earth Brands</div>
