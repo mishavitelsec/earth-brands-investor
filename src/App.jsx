@@ -957,8 +957,75 @@ const PANELS = {
   dataroom:<TabDataRoom/>,returns:<TabReturns/>,
 };
 
+const PASSKEY = 'earthbrands2025';
+
+function PasswordGate({ onUnlock }) {
+  const [input, setInput]   = React.useState('');
+  const [shake, setShake]   = React.useState(false);
+  const [error, setError]   = React.useState(false);
+
+  function attempt() {
+    if (input === PASSKEY) {
+      onUnlock();
+    } else {
+      setShake(true);
+      setError(true);
+      setInput('');
+      setTimeout(() => setShake(false), 500);
+    }
+  }
+
+  return (
+    <div style={{display:'flex',alignItems:'center',justifyContent:'center',minHeight:'100vh',background:C.cream,fontFamily:"'Roboto',sans-serif"}}>
+      <div style={{
+        background:'#fff',border:`1px solid ${C.border}`,borderRadius:16,
+        padding:'48px 44px',width:360,textAlign:'center',
+        animation: shake ? 'shake 0.4s ease' : 'none',
+      }}>
+        <style>{`
+          @keyframes shake {
+            0%,100%{transform:translateX(0)}
+            20%{transform:translateX(-8px)}
+            40%{transform:translateX(8px)}
+            60%{transform:translateX(-6px)}
+            80%{transform:translateX(6px)}
+          }
+        `}</style>
+        {LOGO && <img src={LOGO} style={{width:52,height:52,objectFit:'contain',mixBlendMode:'multiply',marginBottom:20}} alt="ec"/>}
+        <div style={{fontFamily:"'Fustat',sans-serif",fontWeight:800,fontSize:20,color:C.ink,marginBottom:4}}>Earth Brands</div>
+        <div style={{fontSize:12.5,color:C.muted,marginBottom:32}}>Investor Overview · Confidential</div>
+        <input
+          type="password"
+          placeholder="Enter passkey"
+          value={input}
+          onChange={e=>{setInput(e.target.value);setError(false);}}
+          onKeyDown={e=>e.key==='Enter'&&attempt()}
+          style={{
+            width:'100%',padding:'11px 14px',borderRadius:8,fontSize:14,
+            border:`1.5px solid ${error ? '#ef4444' : C.border}`,
+            outline:'none',fontFamily:"'Roboto',sans-serif",
+            boxSizing:'border-box',marginBottom:error?8:12,
+            color:C.ink,background:'#fff',
+          }}
+          autoFocus
+        />
+        {error && <div style={{fontSize:12,color:'#ef4444',marginBottom:10}}>Incorrect passkey</div>}
+        <button onClick={attempt} style={{
+          width:'100%',padding:'11px',background:C.forest,color:'#fff',
+          border:'none',borderRadius:8,fontSize:14,fontWeight:600,
+          cursor:'pointer',fontFamily:"'Roboto',sans-serif",
+        }}>Enter →</button>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
+  const [unlocked, setUnlocked] = useState(false);
   const [tab, setTab] = useState('overview');
+
+  if (!unlocked) return <PasswordGate onUnlock={()=>setUnlocked(true)}/>;
+
   return (
     <div style={s.app}>
       <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;600;700;800&family=Roboto:wght@300;400;500;700&family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
